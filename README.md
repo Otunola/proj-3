@@ -1,4 +1,4 @@
-# proj-3 : MERN STACK IMPLEMENTATION
+# proj-3 : Implement a web solution based on MERN stack in AWS Cloud.
 1. as usual we have to update and upgrade ubuntu with the commands : sudo apt update
 2. and the command : sudo apt upgrade
 3. Then Lets get the location of Node.js software from Ubuntu repositories with the command: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -14,3 +14,39 @@
 9. Run the command ls to confirm that you have package.json file created : ls
 ![Screen Shot 2022-09-04 at 11 31 46 PM](https://user-images.githubusercontent.com/112595648/188335900-58ac02ec-28a5-43b1-9e9e-6b4e2baa42ba.png)
 10. Next, we will Install ExpressJs and create the Routes directory.
+
+11. next, install express because Express helps to define routes of your application based on HTTP methods and URLs.
+12. install it using npm: npm install express
+13. create index.js file with : touch index.js
+14. then install dotenv module : npm install dotenv
+15. use vim to store the script below in the index.js : vim index.js
+16. 
+const express = require('express');
+require('dotenv').config();
+
+const app = express();
+
+const port = process.env.PORT || 5000;
+
+app.use((req, res, next) => {
+res.header("Access-Control-Allow-Origin", "\*");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+next();
+});
+
+app.use((req, res, next) => {
+res.send('Welcome to Express');
+});
+
+app.listen(port, () => {
+console.log(`Server running on port ${port}`)
+});
+17. start our server to see if it works. Open your terminal in the same directory as your index.js file and type:
+18. run the command : node index.js
+19. below is the output
+20. <img width="708" alt="Screen Shot 2022-09-05 at 10 37 23 PM" src="https://user-images.githubusercontent.com/112595648/188514874-b34e7f63-b341-489c-921d-b4dbbf7adcc4.png">
+21. Now since node js is running on on port 5000, so we have to edit the inbound rule on the security group to allow traffic in port 5000 as shown below
+
+
+
+
