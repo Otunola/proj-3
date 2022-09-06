@@ -46,6 +46,11 @@ console.log(`Server running on port ${port}`)
 19. below is the output
 20. <img width="708" alt="Screen Shot 2022-09-05 at 10 37 23 PM" src="https://user-images.githubusercontent.com/112595648/188514874-b34e7f63-b341-489c-921d-b4dbbf7adcc4.png">
 21. Now since node js is running on on port 5000, so we have to edit the inbound rule on the security group to allow traffic in port 5000 as shown below
+![Screen Shot 2022-09-06 at 1 33 51 PM](https://user-images.githubusercontent.com/112595648/188636325-275936fb-05d3-49a4-9504-d20175dbc4bd.png)
+22. Open up your browserand  access your server’s Public IP followed by port 5000:
+      http://<PublicIP-or-PublicDNS>:5000
+![Screen Shot 2022-09-06 at 1 49 31 PM](https://user-images.githubusercontent.com/112595648/188639509-8f7f15bb-38d1-4c3a-bd45-3b645629ccfe.png)
+
 
 
 
