@@ -48,10 +48,95 @@ console.log(`Server running on port ${port}`)
 21. Now since node js is running on on port 5000, so we have to edit the inbound rule on the security group to allow traffic in port 5000 as shown below
 ![Screen Shot 2022-09-06 at 1 33 51 PM](https://user-images.githubusercontent.com/112595648/188636325-275936fb-05d3-49a4-9504-d20175dbc4bd.png)
 22. Open up your browserand  access your server’s Public IP followed by port 5000:
+23. 
       http://<PublicIP-or-PublicDNS>:5000
+      
 ![Screen Shot 2022-09-06 at 1 49 31 PM](https://user-images.githubusercontent.com/112595648/188639509-8f7f15bb-38d1-4c3a-bd45-3b645629ccfe.png)
+24. From the task, There are three actions that our To-Do application needs to be able to do: which are Create a new task, Display list of all tasks, Delete a completed task. and each of the tasks will be associated with HTTP request methods: POST, GET, DELETE.
+      25. For each task, we need to create routes that will define various endpoints that the To-do app will depend on
+26. we create routes folder with : mkdir routes
+27. Change directory to routes folder: cd routes
+28. create a file api.js : touch api.js
+29. copy the following script and save : vim api.js
+      
+const express = require ('express');
+const router = express.Router();
 
+router.get('/todos', (req, res, next) => {
 
+});
 
+router.post('/todos', (req, res, next) => {
 
+});
 
+router.delete('/todos/:id', (req, res, next) => {
+
+})
+
+module.exports = router;
+
+30. NOw we create a model. use models to define the database schema. To create a Schema and a model, install mongoose which is a Node.js package that makes working with mongodb easier.
+
+31. Change directory back Todo : cd ..
+32.  and install Mongoose : npm install mongoose
+33. create a folder called 'models' : mkdir models
+      34. change directory in to models : cd models
+      35. create a file todo.js : touch todo.js     
+      36. use vim to save the script below in todo.js : vim todo.js
+         const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+//create schema for todo
+const TodoSchema = new Schema({
+action: {
+type: String,
+required: [true, 'The todo text field is required']
+}
+})
+
+//create model for todo
+const Todo = mongoose.model('todo', TodoSchema);
+
+module.exports = Todo;
+      37. Now we need to update our routes from the file api.js in ‘routes’ directory to make use of the new model.
+      38. open api.js with vim api.js, delete the code inside with :%d command and paste there code below into it then save and exit
+      39. :
+      cd ..
+      cd routes
+      vim api.js 
+      paster and save the scrips below:
+      
+      const express = require ('express');
+const router = express.Router();
+const Todo = require('../models/todo');
+
+router.get('/todos', (req, res, next) => {
+
+//this will return all the data, exposing only the id and action field to the client
+Todo.find({}, 'action')
+.then(data => res.json(data))
+.catch(next)
+});
+
+router.post('/todos', (req, res, next) => {
+if(req.body.action){
+Todo.create(req.body)
+.then(data => res.json(data))
+.catch(next)
+}else {
+res.json({
+error: "The input field is empty"
+})
+}
+});
+
+router.delete('/todos/:id', (req, res, next) => {
+Todo.findOneAndDelete({"_id": req.params.id})
+.then(data => res.json(data))
+.catch(next)
+})
+
+module.exports = router;
+      40. next we setup our mongodb database
+      
