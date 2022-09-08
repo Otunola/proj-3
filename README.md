@@ -191,3 +191,48 @@ console.log(`Server running on port ${port}`)
 });
 51. start your server useing : node index.js
       <img width="922" alt="Screen Shot 2022-09-06 at 9 05 14 PM" src="https://user-images.githubusercontent.com/112595648/188729835-e99545d1-fa37-4806-b885-a683369a64a7.png">
+NOW OUR BACKEND IS SUCCESFULLY CONFIGURED
+52. Testing Backend Code without Frontend using RESTful API using postman
+      create a POST request to the API http://<PublicIP-or-PublicDNS>:5000/api/todos. This request sends a new task to our To-Do list so the application could store it in the database.
+53. <img width="959" alt="Screen Shot 2022-09-06 at 9 57 38 PM" src="https://user-images.githubusercontent.com/112595648/188736754-03b5ece3-515f-4018-8b84-66e2e757491a.png">
+
+54. Create a GET request to your API on http://<PublicIP-or-PublicDNS>:5000/api/todos. This request retrieves all existing records from out To-do application (backend requests these records from the database and sends it us back as a response to GET request
+      and the response below was gotten
+<img width="848" alt="Screen Shot 2022-09-06 at 9 58 32 PM" src="https://user-images.githubusercontent.com/112595648/188736882-4d4f68b7-7803-4b1d-bf13-b69dc974493e.png">
+
+56. which shows that everything is ok
+57. its time for frontend creation
+58. it is time to create a user interface for a Web client (browser) to interact with the application via API. To start out with the frontend of the To-do app, we will use the create-react-app command to scaffold our app.
+59. In the root directory, run  : npx create-react-app client      
+      the command will create a 'client'directory in the Todo directory
+60. run : npm install concurrently --save-dev      
+      which is used to run other commands concurrently
+61. install Nodemon which is used to monitor the serder with the command : npm install nodemon --save-dev
+62. In Todo folder open the package.json file. Change the highlighted part of the below screenshot and replace with the code below.
+"scripts": {
+"start": "node index.js",
+"start-watch": "nodemon index.js",
+"dev": "concurrently \"npm run start-watch\" \"cd client && npm start\""
+},
+      
+      ![Screen Shot 2022-09-08 at 11 00 40 AM](https://user-images.githubusercontent.com/112595648/189094331-1beb6faa-2c6b-424d-ad2e-43081df144b9.png)
+
+62. : cd Todo
+Open the package.json file
+
+      : vi package.json 
+      and do the edits
+      
+63.then we configure the proxy in package.json
+      cd client
+      vi package.json
+  Then add Add the key value pair in the package.json file
+      "proxy": "http://localhost:5000"
+      this is to make the url accessible.
+
+  64. Now Todo directory, and simply do:
+       npm run dev
+      
+      <img width="1258" alt="Screen Shot 2022-09-08 at 10 27 52 AM" src="https://user-images.githubusercontent.com/112595648/189107613-108ebb1d-0327-41fc-a1c6-03e48784b4fb.png">
+  65.
+      now we create react components
