@@ -512,4 +512,4 @@ monospace;
       <img width="1347" alt="Screen Shot 2022-09-08 at 5 25 57 PM" src="https://user-images.githubusercontent.com/112595648/189218175-134c7bba-51a9-4f01-b930-66242b0bc17e.png">
 
       
-      #PLEASE MY ROUGH SUBMISSION, IM STILL GETTING FAMILIAR WITH GITHUB
+      #PLEASE PARDON MY ROUGH SUBMISSION, IM STILL GETTING FAMILIAR WITH GITHUB
